@@ -54,7 +54,7 @@ mongoose.connect(process.env.MONGOOSEDB, () => {
 app.use(express.json());
 app.use(
 	cors({
-		origin: "https://apitiki-myapp.herokuapp.com/",
+		origin: "http://localhost:3000",
 		methods: "GET,POST,PUT,DELETE",
 		credentials: true,
 	})
