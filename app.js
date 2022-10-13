@@ -1,11 +1,12 @@
 const express = require("express");
-const app = express();
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const passport = require("passport");
 const cookieSession = require("cookie-session");
+
+const app = express();
 
 const authRouter = require("./src/Router/auth");
 const userRouter = require("./src/Router/user");
@@ -28,22 +29,6 @@ const passportSetup = require("./passport");
 const session = require("express-session");
 dotenv.config();
 
-app.use(
-	cookieSession({
-		name: "session",
-		keys: ["cyberwolve"],
-		maxAge: 24 * 60 * 60 * 100,
-	})
-);
-
-app.use(
-	session({
-		resave: false,
-		saveUninitialized: true,
-		secret: "SECRET",
-	})
-);
-
 app.use(passport.initialize());
 app.use(passport.session()); //
 
@@ -51,15 +36,9 @@ mongoose.connect(process.env.MONGOOSEDB, () => {
 	console.log("Connect Mongoose");
 });
 
-app.use(express.json());
-// app.use(
-// 	cors({
-// 		origin: "http://localhost:3000",
-// 		methods: "GET,POST,PUT,DELETE",
-// 		credentials: true,
-// 	})
-// );
+app.use(cors({}));
 app.use(cookieParser());
+app.use(express.json());
 
 app.use("/v1/user", userRouter);
 app.use("/v1/dealhot", dealRouter);
@@ -79,6 +58,6 @@ app.use("/v1/newproduct", newProductRoute);
 app.use("/v1/fashionnewstart", fashionNewStarRoute);
 const PORT = process.env.PORT || "3000";
 
-app.listen(PORT, () => {
-	console.log(`Example app listening on ${PORT}`);
-});
+// app.listen(PORT, () => {
+// 	console.log(`Example app listening on ${PORT}`);
+// });
