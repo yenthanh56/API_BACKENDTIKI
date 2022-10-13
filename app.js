@@ -61,9 +61,9 @@ app.use(
 );
 app.use(cookieParser());
 
-app.use("/v1/auth", authRouter);
 app.use("/v1/user", userRouter);
 app.use("/v1/dealhot", dealRouter);
+app.use("/v1/auth", authRouter);
 
 // user Order
 app.use("/v1/userorder", PayMentUserRoute);
