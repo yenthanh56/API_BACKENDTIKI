@@ -38,16 +38,16 @@ const authController = {
 				return res.status(403).json("password wrong");
 			}
 			if (user && passwordValid) {
-				const accessToken = jwt.sign(
-					{
-						id: user?.id,
-						admin: user?.admin,
-					},
-					process.env.JWT_TOKEN_NAME,
-					{ expiresIn: "20d" }
-				);
-				const { password, ...other } = user?._doc;
-				return res.status(200).json({ ...other, accessToken });
+				// const accessToken = jwt.sign(
+				// 	{
+				// 		id: user?.id,
+				// 		admin: user?.admin,
+				// 	},
+				// 	process.env.JWT_TOKEN_NAME,
+				// 	{ expiresIn: "20d" }
+				// );
+				// const { password, ...other } = user?._doc;
+				return res.status(200).json("Login Successfully");
 			}
 		} catch (error) {
 			return res.status(500).json("Request Error Wrong");
