@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const passport = require("passport");
 const cookieSession = require("cookie-session");
+const bodyParser = require("body-parser");
 const app = express();
 
 const authRouter = require("./src/Router/auth");
@@ -35,6 +36,12 @@ app.use(
 		maxAge: 24 * 60 * 60 * 100,
 	})
 );
+app.use(
+	bodyParser.urlencoded({
+		extended: false,
+	})
+);
+app.use(bodyParser.json());
 
 app.use(
 	session({
