@@ -2,12 +2,11 @@ const mongoose = require("mongoose");
 
 const UserPayMent = new mongoose.Schema(
 	{
-		username: { type: String },
+		username: { type: String, require: true },
 		titleProduct: [
 			{
 				type: String,
 				require: true,
-				unique: true,
 			},
 		],
 		amount: [

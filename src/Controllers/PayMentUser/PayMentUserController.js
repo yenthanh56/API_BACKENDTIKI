@@ -1,5 +1,4 @@
 const UserPayMent = require("../../Models/PayMentUser/PayMentUser");
-const mongoose = require("mongoose");
 
 const userPayMentController = {
 	createOrder: async (req, res) => {
