@@ -38,6 +38,16 @@ const userPayMentController = {
 			return res.status(500).json(error);
 		}
 	},
+	deleteUserOrder: async (req, res) => {
+		try {
+			const deleteOrdered = await UserPayMent.findByIdAndDelete(
+				req.params.id
+			);
+			return res.status(200).json(deleteOrdered);
+		} catch (error) {
+			return res.status(500).json(error);
+		}
+	},
 };
 
 module.exports = userPayMentController;
