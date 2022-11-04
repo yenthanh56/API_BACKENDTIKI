@@ -5,6 +5,11 @@ const userPayMentController = {
 		try {
 			const {
 				username,
+				address,
+				city,
+				district,
+				ward,
+				phone,
 				titleProduct,
 				amount,
 				priceItem,
@@ -15,6 +20,11 @@ const userPayMentController = {
 
 			const newOrder = await new UserPayMent({
 				username,
+				address,
+				city,
+				district,
+				ward,
+				phone,
 				titleProduct,
 				amount,
 				priceItem,

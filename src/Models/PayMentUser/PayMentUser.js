@@ -2,7 +2,39 @@ const mongoose = require("mongoose");
 
 const UserPayMent = new mongoose.Schema(
 	{
-		username: { type: String, require: true },
+		username: { type: String, require: true, unique: true },
+		address: {
+			type: String,
+			require: true,
+			unique: true,
+			minlength: 20,
+			maxlength: 100,
+		},
+		city: {
+			type: String,
+			require: true,
+			unique: true,
+			minlength: 20,
+			maxlength: 100,
+		},
+		district: {
+			type: String,
+			require: true,
+			unique: true,
+		},
+		ward: {
+			type: String,
+			require: true,
+			unique: true,
+		},
+		phone: {
+			type: Number,
+			require: true,
+			unique: true,
+			minlength: 11,
+			maxlength: 11,
+		},
+
 		titleProduct: [
 			{
 				type: String,

@@ -25,7 +25,6 @@ const cheaperRoute = require("./src/Router/Cheaper/Cheaper");
 const newProductRoute = require("./src/Router/Newproduct/Newproduct");
 const fashionNewStarRoute = require("./src/Router/Fashionnewstart/Fashionnewstart");
 
-const passportSetup = require("./passport");
 const session = require("express-session");
 dotenv.config();
 
@@ -43,13 +42,21 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.use(
-	session({
-		resave: false,
-		saveUninitialized: true,
-		secret: "SECRET",
-	})
-);
+// app.use(
+// 	session({
+// 		resave: false,
+// 		saveUninitialized: true,
+// 		secret: "SECRET",
+// 	})
+// );
+app.use(function (req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header(
+		"Access-Control-Allow-Headers",
+		"Origin, X-Requested-With, Content-Type, Accept"
+	);
+	next();
+});
 
 app.use(passport.initialize());
 app.use(passport.session()); //
@@ -59,13 +66,14 @@ mongoose.connect(process.env.MONGOOSEDB, () => {
 });
 
 app.use(express.json());
-app.use(
-	cors({
-		origin: "http://localhost:3000",
-		methods: "GET,POST,PUT,DELETE",
-		credentials: true,
-	})
-);
+// app.use(
+// 	cors({
+// 		origin: "http://localhost:3000",
+// 		methods: "GET,POST,PUT,DELETE",
+// 		credentials: true,
+// 	})
+// );
+app.use(cors({ origin: true }));
 app.use(cookieParser());
 
 app.use("/v1/user", userRouter);
